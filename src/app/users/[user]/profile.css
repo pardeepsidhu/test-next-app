@@ -29,8 +29,6 @@
   }
   
   .bio-box {
-    display: flex;
-    justify-content: flex-start;
     padding-left: 15px;
     padding-right: 15px;
     text-align: justify;

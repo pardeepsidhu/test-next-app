@@ -29,8 +29,7 @@ export default function Profile(props) {
     "skills": [""]
   });
 
- useEffect(()=>{
-  
+ useEffect(()=>{  
   let getData = async()=>{
     let params = await props.params;
     if(!params.user){
@@ -49,35 +48,33 @@ export default function Profile(props) {
   
   return (
     <Card className="w-[350px] card">
-       
-           
-     
       <CardHeader className="profile-header">
         <div className="image-box">
        {  loading ?
          <Loader2 className="h-40 w-40 animate-spin text-cyan-400" /> :
         <img className="image" src={profileData.image} alt={profileData.name} />
-
          }
         </div>
-        <CardTitle><strong>{profileData.name}</strong></CardTitle>
+   { !loading && <>    <CardTitle><strong>{profileData.name}</strong></CardTitle>
         <CardDescription className={"text-black"}>{profileData.title}</CardDescription>
+        </> }
       </CardHeader>
+     
       <hr />
-      <CardContent>
+   { !loading && <>  <CardContent>
      
         <div className="bio-box">
           <strong>Bio</strong>: {profileData.bio}
         </div>
         <div className="bio-box">
-          <strong>Skills</strong>: &nbsp; &nbsp;
-          {profileData.skills.toString()}
+          <strong>Skills</strong>: {profileData.skills.toString().replaceAll(","," , ")}
         </div>
-      </CardContent>
+      </CardContent>  
       
       <CardFooter className="flex footer">
         <Button onClick={handleContact} className="contact-button">Contact</Button>
       </CardFooter>
+      </> }
     </Card>
   )
 }
